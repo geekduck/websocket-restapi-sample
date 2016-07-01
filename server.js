@@ -10,7 +10,7 @@ app.get('/', function(req, res) {
 
 app.get('/admin/api/message', function(req, res) {
     console.log("/admin/api/message");
-    io.sockets.emit("api message", {data:req.params.data});
+    io.sockets.emit("chat message", {data:req.params.data});
 
     res.json({
         status: 200
