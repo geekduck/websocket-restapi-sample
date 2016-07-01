@@ -10,7 +10,7 @@ app.get('/', function(req, res) {
 
 app.get('/admin/api/message', function(req, res) {
     console.log("/admin/api/message");
-    io.sockets.emit("chat message", {data:req.params.data});
+    io.sockets.emit("chat message", req.query.data || "api message!" );
 
     res.json({
         status: 200
@@ -21,10 +21,6 @@ io.on('connection', function(socket) {
     socket.on('chat message', function(msg) {
         io.emit('chat message', "port:" + port + " user:" + socket.id + " msg:" + msg);
     });
-});
-
-io.on('hogehoge', function() {
-  console.dir(arguments);
 });
 
 http.listen(port, function() {
